@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import {request} from "../network/Request";
     export default {
         name: "Cart",
         data(){
@@ -15,6 +16,11 @@
         methods: {
             handleChange(state, data){
                 this.$store.state.count = state.count;
+            },
+            getdata() {
+                request().then(res=> {
+                    console.log(res);
+                })
             }
         }
     }
