@@ -1,0 +1,27 @@
+{
+  "name": "vuecli",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "core-js": "^3.6.5",
+    "element-ui": "^2.14.1",
+    "js-cookie": "^2.2.1",
+    "style-loader": "^2.0.0",
+    "style-resources-loader": "^1.4.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
