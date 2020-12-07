@@ -1,43 +1,41 @@
 <template>
     <div>
-        <el-input v-model="newToken"></el-input>
-        <el-button @click="merge">更新</el-button>
-        <el-input v-model="menu"></el-input>
-        <el-input v-model="realName"></el-input>
+        <el-form ref="form" :model="form">
+            <el-input v-model="form.title"></el-input>
+            <el-input v-model="form.labelID"></el-input>
+            <el-input v-model="form.categoryID"></el-input>
+            <mavon-editor class="editor" :toolbars="toolbars" :scrollStyle="true" v-model="form.content"/>
+            <el-button @click="publicArticle">发布</el-button>
+        </el-form>
     </div>
 </template>
 
 <script>
+    import {publicArticle} from "network/Forum/forum"
+
     export default {
         name: "My",
         data() {
             return {
-                newToken: this.$store.state.userinfo.token,
-                menu: this.$store.state.permission.menu[0].name
+                value: null,
+                form: {}
             }
         },
         methods: {
-            merge() {
-                this.$store
-                    .dispatch("asyncUpdate", {token: this.newToken})
-                    .then(res => {
-                        this.$message({
-                            type: "success",
-                            message: "修改成功",
-                            offset: 180,
-                            center: true
-                        })
-                    })
-            }
-        },
-        computed: {
-            realName(){
-                return this.$store.getters.realName
+            publicArticle(){
+                publicArticle(this.form).then(response => {
+                    if(response.code === 200) {
+                        this.$message.success("发布成功")
+                    }
+                })
             }
         }
     }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+    .editor {
+        height: 100px;
+        margin: 10px 10px;
+    }
 </style>

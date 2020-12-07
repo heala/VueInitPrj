@@ -1,26 +1,30 @@
 <template>
     <div>
-        <el-input v-model="token"></el-input>
-        <el-button @click="mergeInfo">更新</el-button>
+
     </div>
 </template>
 
 <script>
+    import {articleList} from "network/Forum/forum"
     export default {
         name: "Pannel",
         data(){
             return {
-                token: this.$store.state.userinfo.token
+                articleArray: []
             }
         },
         methods: {
-            mergeInfo(){
-                //this.$store.commit("updateinfo", this.token)
-                this.$store.commit({
-                    type: "updateinfo",
-                    token: this.token
-                })
+            articleList(category, label){
+                articleList(category, label).then(response => {
+                    this.articleArray = response.data;
+                }).catch(error => [
+                    this.$message.error(error)
+                ]);
             }
+        },
+        created() {
+            //查询帖子列表
+            this.articleList();
         }
     }
 </script>

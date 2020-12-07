@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import {request} from "../network/Request";
+    import {request} from "../network/request";
     export default {
         name: "Cart",
         data(){
