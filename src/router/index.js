@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 const Login = () => import('../view/Login')
 const Home = () => import("../view/Home")
 const My = () => import("../view/My")
+const Pannel = () => import("../view/Pannel")
 const routes = [
     {
         path: '',
@@ -19,6 +20,9 @@ const routes = [
     }, {
         path: '/my',
         component: My
+    }, {
+        path: '/Pannel',
+        component: Pannel
     }
 ]
 
