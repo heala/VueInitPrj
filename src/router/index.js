@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const Login = () => import('../view/Login')
 const Home = () => import("../view/Home")
 const My = () => import("../view/My")
-const Pannel = () => import("../view/Pannel")
+const ArticleDetail = () => import('../view/ArticleDetail')
 const routes = [
     {
         path: '',
@@ -21,8 +21,8 @@ const routes = [
         path: '/my',
         component: My
     }, {
-        path: '/Pannel',
-        component: Pannel
+        path: '/detail/:articleID',
+        component: ArticleDetail
     }
 ]
 

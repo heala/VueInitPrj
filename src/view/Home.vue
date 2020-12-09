@@ -46,6 +46,7 @@
 
 <style lang="less" scoped>
     .container {
+        height: 100%;
         position: relative;
     }
     .title {

@@ -15,13 +15,14 @@
             <el-collapse-transition>
                 <div v-show="show">
                     <div class="transition-box">
-                        <el-input ref="searchbox" placeholder="请输入内容" class="input-with-select">
+                        <el-input placeholder="请输入内容" v-model="searchContent" class="input-with-select">
                             <el-select slot="prepend" style="width: 90px"
                                        v-model="searchType"
                                        placeholder="请选择">
                                 <el-option v-for="type in searchTypeArray" :key="type.value" :label="type.label"
                                            :value="type.value"></el-option>
                             </el-select>
+                            <el-button slot="append" icon="el-icon-search"></el-button>
                         </el-input>
                     </div>
                 </div>
@@ -39,7 +40,8 @@
         data() {
             return {
                 show: false,
-                searchType: 1
+                searchType: 1,
+                searchContent: ""
             }
         },
         props: {
@@ -51,9 +53,6 @@
         methods: {
             showbox() {
                 this.show = !this.show;
-                if (this.show) {
-                    this.$refs.searchbox.focus();
-                }
             },
             toggleMenu(){
                 eventBus.$emit("toggleMenu");

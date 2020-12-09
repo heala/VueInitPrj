@@ -1,5 +1,5 @@
 <template>
-    <div class="article-item">
+    <div class="article-item" @click="articleDetail">
         <div class="article-info">
             <div class="title">
                 <p>{{article.title}}</p>
@@ -33,6 +33,11 @@
             article: {
                 type: Object,
                 default: null
+            }
+        },
+        methods: {
+            articleDetail(){
+                this.$router.push('/detail/'+ this.article.articleID);
             }
         },
         mounted() {

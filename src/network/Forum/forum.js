@@ -17,3 +17,20 @@ export function articleList(category, label) {
         }
     })
 }
+
+export function articleDetail(articleID) {
+    return request({
+        method: "get",
+        url: "/forum/detail/" + articleID
+    })
+}
+
+export function uploadFile(formData) {
+    return request({
+        url: "/forum/upload",
+        method: "post",
+        data: formData,
+        headers: { 'Content-Type': 'multipart/form-data'},
+
+    })
+}
