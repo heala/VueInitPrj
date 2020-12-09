@@ -1,40 +1,43 @@
 <template>
-    <div class="container">
+    <div>
         <HomeHeader :searchTypeArray="[{label: '主题', value: 1},{label: '作者', value: 2}]"/>
         <navbar></navbar>
-        <div>
+        <div class="article-content">
             <div class="title">
-                <p>Android小应用</p>
+                <span>Android小应用</span>
             </div>
             <div class="article-list">
                 <articleitem v-for="(article, articleID) in articles" :article="article" :key="articleID"></articleitem>
             </div>
+            <EditTab></EditTab>
         </div>
     </div>
 </template>
 
 <script>
-    import HomeHeader from "components/content/header/HomeHeader";
+    import HomeHeader from "./article/HomeHeader";
     import articleitem from "components/content/articleLine/articleItem";
     import navbar from "components/content/navbar/navbar";
     import {articleList} from "network/Forum/forum";
+    import EditTab from "./article/EditTab";
+
     export default {
         name: "Home",
         components: {
             HomeHeader,
             articleitem,
-            navbar
+            navbar,
+            EditTab
         },
-        data(){
+        data() {
             return {
                 articles: []
             }
         },
         methods: {
-            getArticleList(){
+            getArticleList() {
                 articleList().then(response => {
                     this.articles.push(...response.data);
-                    console.log('home-----------------'+ this.articles);
                 });
             }
         },
@@ -45,13 +48,10 @@
 </script>
 
 <style lang="less" scoped>
-    .container {
-        height: 100%;
-        position: relative;
-    }
     .title {
-        margin: 12px 0 0 12px;
-        p {
+        margin-top: 12px;
+
+        span {
             padding-left: 10px;
             border-left: solid 3px green;
         }

@@ -34,11 +34,53 @@
       "unicode_decimal": 58919
     },
     {
+      "icon_id": "2506215",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "2593677",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "3764006",
+      "name": "电话",
+      "font_class": "weibiaoti-",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "4889788",
+      "name": "头像",
+      "font_class": "touxiang",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
       "icon_id": "5022863",
       "name": "验证码",
       "font_class": "yanzhengma",
       "unicode": "e623",
       "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "12661314",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "13042654",
+      "name": "回复",
+      "font_class": "huifu",
+      "unicode": "e637",
+      "unicode_decimal": 58935
     },
     {
       "icon_id": "13479132",
@@ -53,6 +95,27 @@
       "font_class": "B1",
       "unicode": "e70f",
       "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "15726759",
+      "name": "发布",
+      "font_class": "fabu",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "16942294",
+      "name": "后退",
+      "font_class": "houtui",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "16942351",
+      "name": "后退",
+      "font_class": "houtui1",
+      "unicode": "e610",
+      "unicode_decimal": 58896
     }
   ]
 }

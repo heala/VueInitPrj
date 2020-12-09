@@ -100,7 +100,7 @@
 <style lang="less" scoped>
     .nav-tabs {
         position: absolute;
-        top: 0;
+        top: 44px;
         left: 0;
         right: 0;
         bottom: 0;

@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 const Login = () => import('../view/Login')
 const Home = () => import("../view/Home")
-const My = () => import("../view/My")
-const ArticleDetail = () => import('../view/ArticleDetail')
+const Editor = () => import("../view/article/Editor")
+const ArticleDetail = () => import('../view/article/ArticleDetail')
 const routes = [
     {
         path: '',
@@ -18,8 +18,8 @@ const routes = [
         path: '/home',
         component: Home
     }, {
-        path: '/my',
-        component: My
+        path: '/edit',
+        component: Editor
     }, {
         path: '/detail/:articleID',
         component: ArticleDetail
