@@ -37,11 +37,13 @@
         },
         methods: {
             articleDetail(){
-                this.$router.push('/detail/'+ this.article.articleID);
+                this.$router.push({
+                    path: '/detail',
+                    query: {
+                        article: this.article
+                    }
+                });
             }
-        },
-        mounted() {
-            console.log(this.article);
         }
     }
 </script>

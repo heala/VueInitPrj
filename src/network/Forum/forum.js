@@ -8,13 +8,11 @@ export function publicArticle(data) {
     });
 }
 
-export function articleList(category, label) {
+export function articleList(query) {
     return request({
         url: "/forum/articleList",
         method: "get",
-        params: {
-            category, label
-        }
+        params: query
     })
 }
 

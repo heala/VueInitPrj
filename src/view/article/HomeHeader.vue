@@ -11,13 +11,22 @@
         <el-collapse-transition>
             <div v-show="show">
                 <div class="transition-box">
-                    <el-input ref="searchbox" placeholder="请输入内容" class="input-with-select">
-                        <el-select slot="prepend" style="width: 90px"
-                                   v-model="searchType"
+                    <el-input v-model="topic" placeholder="请输入内容" class="input-with-select">
+                        <el-select v-model="searchType"
+                                   slot="prepend"
+                                   style="width: 90px"
                                    placeholder="请选择">
-                            <el-option v-for="type in searchTypeArray" :key="type.value" :label="type.label"
-                                       :value="type.value"></el-option>
+                            <el-option v-for="type in searchTypeArray"
+                                       :key="type.value"
+                                       :label="type.label"
+                                       :value="type.value">
+                            </el-option>
                         </el-select>
+                        <el-button slot="append"
+                                   @click="searchArticle"
+                                   @keyup.enter="searchArticle"
+                                   icon="el-icon-search">
+                        </el-button>
                     </el-input>
                 </div>
             </div>
@@ -29,6 +38,8 @@
     import eventBus from "@/util/eventBus";
     import Header from "components/content/header/Header";
 
+    import {articleList} from "network/Forum/forum"
+
     export default {
         name: "HomeHeader",
         components: {
@@ -37,7 +48,8 @@
         data() {
             return {
                 show: false,
-                searchType: 1
+                topic: "",
+                searchType: 'TOPIC'
             }
         },
         props: {
@@ -52,6 +64,23 @@
             },
             toggleMenu() {
                 eventBus.$emit("toggleMenu");
+            },
+            searchArticle() {
+                if(!this.topic) {
+                    this.$message.error("请输入条件");
+                    return;
+                }
+                articleList({
+                    'searchType': this.searchType,
+                    'topic': this.topic
+                }).then(response => {
+                    this.$router.push({
+                        path: "/result",
+                        query: {
+                            articles: response.data
+                        }
+                    })
+                });
             }
         },
         computed: {

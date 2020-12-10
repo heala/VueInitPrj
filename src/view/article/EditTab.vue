@@ -1,28 +1,62 @@
 <template>
-    <div class="edit el-icon-edit-outline" @click="toEdit"></div>
+    <div :style="displayStyle" class="fixed-tabbar">
+        <div class="el-icon-refresh" @click="refresh"></div>
+        <div class="el-icon-edit-outline" @click="toEdit"></div>
+    </div>
 </template>
 
 <script>
     export default {
         name: "EditTab",
-        methods: {
-            toEdit(){
-                this.$router.push("/edit")
+        data(){
+            return {
+                offsetY: 0,
+                show: true
             }
+        },
+        computed: {
+            displayStyle(){
+                return this.show? {display: "flex"} : {display: "none"};
+            }
+        },
+        methods: {
+            toEdit() {
+                this.$router.push("/edit")
+            },
+            refresh() {
+                this.$emit("refresh")
+            },
+            handlerScroll(e) {
+                let p = window.pageYOffset;
+                if (this.offsetY < p) {
+                    this.show = false;
+                } else {
+                    this.show = true
+                }
+                this.offsetY = p;
+            }
+        },
+        mounted() {
+            document.addEventListener("scroll", this.handlerScroll, false);
         }
     }
 </script>
 
-<style scoped>
-    .edit {
+<style lang="less" scoped>
+    .fixed-tabbar {
         position: fixed;
-        bottom: 50px;
+        bottom: 20px;
         right: 20px;
-        border-radius: 50%;
-        background-color: #8cc5ff;
-        width: 50px;
-        height: 50px;
         text-align: center;
-        line-height: 50px;
+        width: 100px;
+        height: 50px;
+        display: flex;
+
+        div {
+            flex: 1;
+            background-color: #c9eac9;
+            line-height: 50px;
+            border-radius: 50%;
+        }
     }
 </style>

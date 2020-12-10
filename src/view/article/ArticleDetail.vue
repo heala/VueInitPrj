@@ -8,28 +8,35 @@
             <div slot="right" class="el-icon-share">
             </div>
         </Header>
-        <div class="detail">
-            <mavon-editor defaultOpen="preview" :ishljs="true" :subfield="false" :toolbarsFlag="false" v-model="content"/>
-            <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
-        </div>
+        <!-- 标题 -->
+
+        <!-- 主题 -->
+        <DetailItem :content="content"></DetailItem>
+        <!-- 回复
+        <DetailItem v-for="">
+        -->
     </div>
 </template>
 
 <script>
     import {articleDetail} from 'network/Forum/forum'
     import Header from "components/content/header/Header";
+    import DetailItem from "../response/responseTitle/DetailItem";
 
     export default {
         name: "ArticleDetail",
         components: {
-            Header
+            Header,
+            DetailItem
         },
         data() {
             return {
+                article: null,
                 content: null
             }
         },
         methods: {
+            //查询主题内容
             articleDetail(articleID) {
                 articleDetail(articleID).then(response => {
                     this.content = response.data.content;
@@ -40,8 +47,8 @@
             }
         },
         created() {
-            const articleID = this.$route.params.articleID;
-            this.articleDetail(articleID);
+            this.article = this.$route.query.article;
+            this.content = this.articleDetail(this.article.articleID)
         }
     }
 </script>

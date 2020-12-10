@@ -1,6 +1,6 @@
 <template>
     <div>
-        <HomeHeader :searchTypeArray="[{label: '主题', value: 1},{label: '作者', value: 2}]"/>
+        <HomeHeader :searchTypeArray="[{label: '主题', value: 'TOPIC'},{label: '作者', value: 'AUTHOR'}]"/>
         <navbar></navbar>
         <div class="article-content">
             <div class="title">
@@ -9,7 +9,7 @@
             <div class="article-list">
                 <articleitem v-for="(article, articleID) in articles" :article="article" :key="articleID"></articleitem>
             </div>
-            <EditTab></EditTab>
+            <EditTab @refresh="getArticleList"></EditTab>
         </div>
     </div>
 </template>
