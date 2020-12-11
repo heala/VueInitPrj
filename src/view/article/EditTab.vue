@@ -19,9 +19,24 @@
                 return this.show? {display: "flex"} : {display: "none"};
             }
         },
+        props: {
+            actionType: {
+                type: String,
+                default: 'public'
+            },
+            articleId: {
+                default: null
+            }
+        },
         methods: {
             toEdit() {
-                this.$router.push("/edit")
+                this.$router.push({
+                    path: "edit",
+                    query: {
+                        actionType: this.actionType,
+                        articleId: this.articleId
+                    }
+                })
             },
             refresh() {
                 this.$emit("refresh")
@@ -51,7 +66,7 @@
         width: 100px;
         height: 50px;
         display: flex;
-
+        z-index: 1600;      /*mavoneditor 是1500，需要盖住*/
         div {
             flex: 1;
             background-color: #c9eac9;

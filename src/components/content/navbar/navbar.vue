@@ -104,7 +104,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 10;
+        z-index: 1700;
 
         .nav-mask {
             background-color: rgba(0, 0, 0, .4);

@@ -3,13 +3,13 @@
     <Header>
         <div slot="left" class="el-icon-back" @click="goBack"></div>
         <div slot="center">
-            <span>编辑主题</span>
+            <span>{{isReply? "回复主题" : "编辑主题"}}</span>
         </div>
         <div slot="right" class="iconfont icon-fabu" @click="publicArticle">
         </div>
     </Header>
     <el-form ref="form" :model="form" class="editor">
-        <el-input v-model="form.title" id="title" placeholder="请输入标题"></el-input>
+        <el-input v-model="form.title" id="title" :style="showStyle" placeholder="请输入标题"></el-input>
         <mavon-editor ref=md
                       @imgAdd="imageAdd"
                       :toolbars="toolbars"
@@ -31,10 +31,20 @@
         components: {
             Header
         },
+        computed: {
+            isReply() {
+                return this.actionType === 'reply';
+            },
+            showStyle(){
+                return this.isReply? {display: "none"} : {display: "block"};
+            }
+        },
         data() {
             return {
                 value: null,
                 form: {},
+                actionType: '',
+                articleId: null,
                 toolbars: {
                     bold: true,
                     header: true,
@@ -75,6 +85,10 @@
         },
         mounted() {
             document.getElementById("title").focus();
+            this.actionType = this.$route.query.actionType;
+            if(this.actionType === 'reply') {
+                this.articleId = this.$route.query.articleId;
+            }
         }
     }
 </script>

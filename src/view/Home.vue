@@ -7,7 +7,7 @@
                 <span>Android小应用</span>
             </div>
             <div class="article-list">
-                <articleitem v-for="(article, articleID) in articles" :article="article" :key="articleID"></articleitem>
+                <articleitem v-for="(article, articleId) in articles" :article="article" :key="articleId"></articleitem>
             </div>
             <EditTab @refresh="getArticleList"></EditTab>
         </div>

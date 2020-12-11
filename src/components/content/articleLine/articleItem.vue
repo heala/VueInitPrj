@@ -9,7 +9,7 @@
                     <span>阅读({{article.readCount}})</span>
                 </div>
                 <div>
-                    <span>评论(0)</span>
+                    <span>评论(01)</span>
                 </div>
                 <div>
                     <span>赞({{article.agree}})</span>
