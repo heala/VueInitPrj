@@ -16,10 +16,10 @@ export function articleList(query) {
     })
 }
 
-export function articleDetail(articleID) {
+export function articleDetail(articleId) {
     return request({
         method: "get",
-        url: "/forum/detail/" + articleID
+        url: "/forum/detail/" + articleId
     })
 }
 

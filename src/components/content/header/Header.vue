@@ -28,7 +28,6 @@
         text-align: center;
         box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
         display: flex;
-        z-index: 9;
         .left, .right {
             width: 60px;
             font-size: 25px;

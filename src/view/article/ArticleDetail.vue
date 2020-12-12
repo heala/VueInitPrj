@@ -8,13 +8,16 @@
             <div slot="right" class="el-icon-share">
             </div>
         </Header>
-        <!-- 标题 -->
-
-        <!-- 主题 -->
-        <DetailItem :content="content"></DetailItem>
-        <!-- 回复
-        <DetailItem v-for="">
-        -->
+        <div class="article-active">
+            <!-- 标题 -->
+            <div>{{article.title}}</div>
+            <!-- 主题 -->
+            <DetailItem :content="content" :article="article"></DetailItem>
+            <!-- 回复
+            <DetailItem v-for="">
+            -->
+            <EditTab actionType="reply" :articleId="article.articleId"></EditTab>
+        </div>
     </div>
 </template>
 
@@ -22,12 +25,14 @@
     import {articleDetail} from 'network/Forum/forum'
     import Header from "components/content/header/Header";
     import DetailItem from "../response/responseTitle/DetailItem";
+    import EditTab from "./EditTab";
 
     export default {
         name: "ArticleDetail",
         components: {
             Header,
-            DetailItem
+            DetailItem,
+            EditTab
         },
         data() {
             return {
@@ -37,12 +42,12 @@
         },
         methods: {
             //查询主题内容
-            articleDetail(articleID) {
-                articleDetail(articleID).then(response => {
+            articleDetail(articleId) {
+                articleDetail(articleId).then(response => {
                     this.content = response.data.content;
                 });
             },
-            goBack(){
+            goBack() {
                 this.$router.go(-1)
             }
         },
@@ -54,8 +59,13 @@
 </script>
 
 <style lang="less" scoped>
-    .detail {
-        z-index: 8;
-        position: relative;
+    .article-active {
+        background-color: #E6A23C;
+        > div:first-of-type {
+            font-weight: 400;
+            font-size: 29px;
+            margin: 10px 0 10px 12px;
+            line-height: 44px;
+        }
     }
 </style>

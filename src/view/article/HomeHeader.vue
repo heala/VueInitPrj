@@ -3,7 +3,7 @@
         <Header :searchTypeArray="searchTypeArray">
             <div slot="left" @click="toggleMenu" class="el-icon-tickets"></div>
             <div slot="center">
-                <span>云梦小站</span>
+                <span>大胖之家</span>
             </div>
             <div slot="right" :show="show" @click="showbox" :class="serchIcon">
             </div>

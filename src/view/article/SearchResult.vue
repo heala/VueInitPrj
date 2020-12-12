@@ -7,7 +7,7 @@
             </div>
         </Header>
         <div v-if="show" class="article-list">
-            <articleitem v-for="(article, articleID) in articles" :article="article" :key="articleID"></articleitem>
+            <articleitem v-for="(article, articleId) in articles" :article="article" :key="articleId"></articleitem>
         </div>
         <div class="none-result" v-else>
             没有结果呢~~~
