@@ -48,7 +48,7 @@
         },
         created() {
             this.article = this.$route.query.article;
-            this.content = this.articleDetail(this.article.articleID)
+            this.content = this.articleDetail(this.article.articleId)
         }
     }
 </script>

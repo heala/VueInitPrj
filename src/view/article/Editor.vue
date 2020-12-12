@@ -41,6 +41,7 @@
                     link: true,
                     imagelink: true,
                     code: true,
+                    quote: true, // 引用
                     alignleft: true,
                     aligncenter: true,
                 }

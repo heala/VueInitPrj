@@ -24,7 +24,7 @@
                 this.$router.push("/edit")
             },
             refresh() {
-                this.$emit("refresh")
+                this.$emit("refresh", true)
             },
             handlerScroll(e) {
                 let p = window.pageYOffset;
