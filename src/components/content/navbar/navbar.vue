@@ -3,10 +3,13 @@
         <div @click="toggleMenu" class="nav-mask"></div>
         <transition>
             <div v-if="maskOpen" class="navmenus">
+                <div class="user-icon">
+                    <img src="~assets/img/face.jpg" alt="">
+                </div>
                 <el-menu
-                        background-color="#545c64"
-                        text-color="#fff"
-                        active-text-color="#ffd04b"
+                        background-color="#fff0cd"
+                        text-color="#1a3959"
+                        active-text-color="#E6A23C"
                         default-active="1"
                         :unique-opened=true
                 >
@@ -72,6 +75,7 @@
 
 <script>
     import eventBus from "@/util/eventBus";
+
     export default {
         name: "navbar",
         data() {
@@ -80,8 +84,8 @@
             }
         },
         computed: {
-            maskStyle(){
-                return this.maskOpen? {"display":"block"} : {"display":"none"};
+            maskStyle() {
+                return this.maskOpen ? {"display": "block"} : {"display": "none"};
             }
         },
         methods: {
@@ -105,6 +109,22 @@
         right: 0;
         bottom: 0;
         z-index: 1700;
+
+        .user-icon {
+            width: 200px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff6df;
+
+            img {
+                border: solid 5px #EEDABB;
+                height: 70px;
+                width: 70px;
+                border-radius: 50%;
+            }
+        }
 
         .nav-mask {
             background-color: rgba(0, 0, 0, .4);

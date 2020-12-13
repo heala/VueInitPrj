@@ -34,6 +34,9 @@
                 articles: []
             }
         },
+        created() {
+            this.getArticleList();
+        },
         methods: {
             getArticleList(isRefresh) {
                 articleList().then(response => {
@@ -44,9 +47,6 @@
                 });
             }
         },
-        created() {
-            this.getArticleList();
-        }
     }
 </script>
 

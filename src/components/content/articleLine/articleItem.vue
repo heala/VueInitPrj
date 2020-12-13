@@ -54,7 +54,7 @@
         height: 120px;
         margin-top: 10px;
         border-radius:12px;
-        background-color: #d1d5ba;
+        background-color: #ffedc3;
         .article-info {
             width: 70%;
             float: left;

@@ -13,13 +13,6 @@
       "unicode_decimal": 58962
     },
     {
-      "icon_id": "949536",
-      "name": "aui-icon-cart",
-      "font_class": "aui-icon-cart",
-      "unicode": "e604",
-      "unicode_decimal": 58884
-    },
-    {
       "icon_id": "975239",
       "name": "my",
       "font_class": "my",
@@ -27,25 +20,11 @@
       "unicode_decimal": 59047
     },
     {
-      "icon_id": "1462883",
-      "name": "category",
-      "font_class": "category",
-      "unicode": "e627",
-      "unicode_decimal": 58919
-    },
-    {
       "icon_id": "2506215",
       "name": "邮箱",
       "font_class": "youxiang",
       "unicode": "e63e",
       "unicode_decimal": 58942
-    },
-    {
-      "icon_id": "2593677",
-      "name": "女",
-      "font_class": "nv",
-      "unicode": "e622",
-      "unicode_decimal": 58914
     },
     {
       "icon_id": "3764006",
@@ -67,13 +46,6 @@
       "font_class": "yanzhengma",
       "unicode": "e623",
       "unicode_decimal": 58915
-    },
-    {
-      "icon_id": "12661314",
-      "name": "男",
-      "font_class": "nan",
-      "unicode": "e667",
-      "unicode_decimal": 58983
     },
     {
       "icon_id": "13042654",
@@ -102,6 +74,48 @@
       "font_class": "fabu",
       "unicode": "e60a",
       "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "15838435",
+      "name": "bad",
+      "font_class": "bad",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "15838444",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "15838474",
+      "name": "favorite",
+      "font_class": "favorite",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "15838483",
+      "name": "good",
+      "font_class": "good",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "15838525",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "15838543",
+      "name": "toggle-right",
+      "font_class": "toggle-right",
+      "unicode": "e680",
+      "unicode_decimal": 59008
     },
     {
       "icon_id": "16942294",

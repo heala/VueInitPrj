@@ -13,15 +13,14 @@
             <div>{{article.title}}</div>
             <!-- 主题 -->
             <DetailItem :content="content" :article="article"></DetailItem>
-            <!-- 回复
-            <DetailItem v-for="">
-            -->
+            <DetailItem v-for="(reply, commentId) in replyArray" :content="reply.content" :article="reply" :key="commentId"/>
             <EditTab actionType="reply" :articleId="article.articleId"></EditTab>
         </div>
     </div>
 </template>
 
 <script>
+    import {replyList} from 'network/Forum/reply'
     import {articleDetail} from 'network/Forum/forum'
     import Header from "components/content/header/Header";
     import DetailItem from "../response/responseTitle/DetailItem";
@@ -37,7 +36,8 @@
         data() {
             return {
                 article: null,
-                content: null
+                content: null,
+                replyArray: []
             }
         },
         methods: {
@@ -47,25 +47,35 @@
                     this.content = response.data.content;
                 });
             },
+            replyList(articleId){
+                replyList(articleId).then(response=> {
+                    this.replyArray.push(...response.data);
+                    console.log(this.replyArray);
+                });
+            },
             goBack() {
                 this.$router.go(-1)
             }
         },
         created() {
             this.article = this.$route.query.article;
-            this.content = this.articleDetail(this.article.articleId)
+            this.content = this.articleDetail(this.article.articleId);
+            this.replyList(this.article.articleId)
+
         }
     }
 </script>
 
 <style lang="less" scoped>
     .article-active {
-        background-color: #E6A23C;
         > div:first-of-type {
             font-weight: 400;
             font-size: 29px;
             margin: 10px 0 10px 12px;
             line-height: 44px;
+        }
+        >div:nth-child(2n) {
+            background-color: #fff0cd;
         }
     }
 </style>

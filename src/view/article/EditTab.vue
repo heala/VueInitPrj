@@ -67,9 +67,10 @@
         height: 50px;
         display: flex;
         z-index: 1600;      /*mavoneditor 是1500，需要盖住*/
+        background-color: transparent;
         div {
             flex: 1;
-            background-color: #c9eac9;
+            background-color: rgba(201, 156, 146, .4);
             line-height: 50px;
             border-radius: 50%;
         }

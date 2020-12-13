@@ -20,12 +20,12 @@
 
 <style lang="less">
     .head {
-        position: sticky;
+        position: static;
         top: 0;
         height: 44px;
-        background-color: #fff;
         line-height: 44px;
         text-align: center;
+        z-index: 1650;
         box-shadow: 0 3px 10px rgba(0, 0, 0, .3);
         display: flex;
         .left, .right {

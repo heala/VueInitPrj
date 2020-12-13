@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="home-header">
         <Header :searchTypeArray="searchTypeArray">
-            <div slot="left" @click="toggleMenu" class="el-icon-tickets"></div>
+            <div slot="left" @click="toggleMenu" class="iconfont icon-toggle-right"></div>
             <div slot="center">
                 <span>大胖之家</span>
             </div>
@@ -85,11 +85,14 @@
         },
         computed: {
             serchIcon() {
-                return this.show ? 'el-icon-close' : 'el-icon-search';
+                return this.show ? 'iconfont icon-close' : 'iconfont icon-search';
             }
         }
     }
 </script>
 
 <style>
+    .home-header {
+        z-index: 1650;
+    }
 </style>

@@ -32,3 +32,11 @@ export function uploadFile(formData) {
 
     })
 }
+
+export function opinionArticle(data) {
+    return request({
+        url: "/forum/opinion",
+        method: "post",
+        data
+    })
+}
