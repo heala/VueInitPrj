@@ -24,8 +24,8 @@
         <div class="bottom">
             <div class="reply-date">2020-01-12</div>
             <div class="opinion">
-                <span class="iconfont icon-good" @click="showOpinion(0)">{{article.agree}}</span>
-                <span class="iconfont icon-bad" @click="showOpinion(1)">{{article.disAgree}}</span>
+                <span class="iconfont icon-good" :style="agree(0)" @click="showOpinion(0)">{{article.agree}}</span>
+                <span class="iconfont icon-bad" :style="agree(1)" @click="showOpinion(1)">{{article.disAgree}}</span>
                 <span @click="reply" class="iconfont icon-huifu"></span>
             </div>
         </div>
@@ -38,7 +38,7 @@
         name: "DetailItem",
         data() {
             return {
-                detailArticle: null
+                detailArticle: null,
             }
         },
         props: {
@@ -54,6 +54,14 @@
         computed: {
             stairNo(){
                 return this.article.articleId? "楼主" : this.article.rowno + '楼';
+            },
+            agree(){
+                return function (type) {
+                    if(this.article.currUserOpinion >= 0) {
+                        return this.article.currUserOpinion === type ? {color: "red"} : {};
+                    }
+                    return this.opinionType === type ? {color: "red"} : {};
+                }
             }
         },
         methods: {
@@ -71,18 +79,47 @@
                 return '@' + article.user.nickName + '\\n> ' + article.content + '\\n\\n';
             },
             showOpinion(type){
+                let userType = this.article.currUserOpinion;
                 opinionArticle(
                     {
                         userId: 1,
-                        agree: type,
+                        agree: userType ===type ? 2 : type,
                         detailId: this.article.articleId ? this.article.articleId : this.article.commentId
                     }
-                ).then(
-                    res => {
-
+                ).then(res => {
+                    if(res.code == 200) {
+                        //修改已赞信息
+                        if(userType === type) {
+                            if(userType === 0) {    //修改赞
+                                this.article.agree -= 1;
+                            } else {
+                                this.article.disAgree -=1;
+                            }
+                            this.article.currUserOpinion = 2;
+                        } else {
+                            if(userType != 2) {
+                                if(type ===0) {
+                                    this.article.disAgree -=1;
+                                    this.article.agree += 1;
+                                    this.article.currUserOpinion = 0;
+                                } else {
+                                    this.article.disAgree +=1;
+                                    this.article.agree -= 1;
+                                    this.article.currUserOpinion = 1;
+                                }
+                            } else {
+                                if(type === 0) {
+                                    this.article.agree +=1;
+                                    this.article.currUserOpinion = 0;
+                                } else {
+                                    this.article.disAgree +=1;
+                                    this.article.currUserOpinion = 1;
+                                }
+                            }
+                        }
+                    } else {
+                        this.$message.error(res.msg);
                     }
-                ).catch(res => {
-                    console.log(res);
                 });
             }
         }
@@ -95,6 +132,7 @@
         .detail-head {
             height: 80px;
             display: flex;
+            border-top: solid 3px #d4b780;
             .pic {
                 width: 80px;
                 display: flex;
