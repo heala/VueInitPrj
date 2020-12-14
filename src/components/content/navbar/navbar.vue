@@ -4,7 +4,7 @@
         <transition>
             <div v-if="maskOpen" class="navmenus">
                 <div class="user-icon">
-                    <img src="~assets/img/face.jpg" alt="">
+                    <el-avatar :size="60" src="~assets/img/face.jpg"></el-avatar>
                 </div>
                 <el-menu
                         background-color="#fff0cd"

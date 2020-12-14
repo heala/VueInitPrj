@@ -1,7 +1,7 @@
 import axios from 'axios'
 export function request(config) {
     const instance = axios.create({
-        baseURL: "http://localhost:8080//VueAPI",
+        baseURL: "http://localhost:8080/VueAPI",
         timeout: 5000,
     })
 

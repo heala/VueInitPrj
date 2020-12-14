@@ -66,7 +66,11 @@
                 if ("public" === this.actionType) {
                     publicArticle(this.form).then(response => {
                         if (response.code === 200) {
-                            this.$message.success("发布成功");
+                            this.$message({
+                                type: "success",
+                                message: "发布成功",
+                                duration: 800
+                            });
                             this.$router.go(-1);
                         }
                     })
@@ -74,7 +78,11 @@
                     console.log("保存评论----------------" + this.form.content + ": " + this.form.articleId)
                     replyArticle(this.form).then(response => {
                         if (response.code === 200) {
-                            this.$message.success("回复成功");
+                            this.$message({
+                                type: "success",
+                                message: "回复成功",
+                                duration: 800
+                            });
                             this.$router.go(-1);
                         }
                     })
@@ -88,7 +96,11 @@
                 formdata.append('file', $file);
                 uploadFile(formdata).then(response => {
                     if (response.code == 200) {
-                        this.$message.success('图片上传成功');
+                        this.$message({
+                            type: "success",
+                            message: "图片上传成功",
+                            duration: 800
+                        });
                         this.$refs.md.$img2Url(pos, response.msg)
                     }
                 })
