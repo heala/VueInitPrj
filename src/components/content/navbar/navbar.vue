@@ -3,8 +3,8 @@
         <div @click="toggleMenu" class="nav-mask"></div>
         <transition>
             <div v-if="maskOpen" class="navmenus">
-                <div class="user-icon">
-                    <el-avatar :size="60" src="~assets/img/face.jpg"></el-avatar>
+                <div class="user-icon" @click="tologin">
+                    <el-avatar icon="el-icon-user-solid" :size="60" src="~assets/img/face.jpg"></el-avatar>
                 </div>
                 <el-menu
                         background-color="#fff0cd"
@@ -24,7 +24,7 @@
                             <el-menu-item index="1-2">选项2</el-menu-item>
                         </el-menu-item-group>
                         <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
+                            <el-menu-item @click="logout">退出</el-menu-item>
                         </el-menu-item-group>
                         <el-submenu index="1-4">
                             <template slot="title">选项4</template>
@@ -75,7 +75,7 @@
 
 <script>
     import eventBus from "@/util/eventBus";
-
+    import {removeToken} from '@/network/auth'
     export default {
         name: "navbar",
         data() {
@@ -91,6 +91,23 @@
         methods: {
             toggleMenu() {
                 this.maskOpen = !this.maskOpen;
+            },
+            logout(){
+                removeToken();
+                this.$store.commit("setName", "")
+                this.toggleMenu();
+            },
+            tologin(){
+                let userName = this.$store.state.name;
+                if(userName == '') {
+                    this.$router.push("login")
+                } else {
+                    this.$message({
+                        type: "warning",
+                        duration: 500,
+                        message: "已经登录..后续功能待开发"
+                    })
+                }
             }
         },
         mounted: function () {
@@ -112,11 +129,11 @@
 
         .user-icon {
             width: 200px;
-            height: 80px;
+            height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff6df;
+            background-color: #fff0cd;
 
             img {
                 border: solid 5px #EEDABB;

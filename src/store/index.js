@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        currentArticle: null
+        name: ''
     },
     mutations: {
-        setCurrentArticle(state, payload){
-            state.currentArticle = payload.article;
+        setName(state, name){
+            state.name = name;
         }
     },
     getters: {

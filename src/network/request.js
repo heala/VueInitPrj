@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {getToken} from './auth'
+import {Message} from 'element-ui'
 
 export function request(config) {
     const instance = axios.create({
@@ -8,14 +9,35 @@ export function request(config) {
     })
 
     instance.interceptors.request.use(config=>{
-        config.headers['Authentication'] = "Bearer " + getToken();
+        let token = getToken();
+        if(token) {
+            config.headers['Authentication'] = "Bearer " + token;
+        }
         return config;
     }, rejectConfig => {
 
     })
 
     instance.interceptors.response.use(res=> {
-        return res.data;
+        const code = res.data.code;
+        const msg = res.data.msg;
+        if(res.data.code === 401) {
+            Message({
+                type: "error",
+                message: msg,
+                duration: 800
+            })
+            return;
+        } else if(code === 500) {
+            Message({
+                type: "error",
+                message: msg,
+                duration: 800
+            })
+            return Promise.reject(new Error(msg))
+        } else {
+            return res.data;
+        }
     }, onRejected=> {
 
     })

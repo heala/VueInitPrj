@@ -91,7 +91,7 @@
                                     type: "success",
                                     duration: 800,
                                     message: "注册成功"
-                                })
+                                });
                                 this.toRegist();
                             } else {
                                 this.$message({
@@ -107,7 +107,7 @@
                                 if(response.code === 200) {
                                     this.$router.replace("/home");
                                     setToken(response.msg);
-                                    console.log(response.msg);
+                                    this.$store.commit("setName", this.form.userName)
                                 } else {
                                     this.$message.error(response.msg)
                                 }
