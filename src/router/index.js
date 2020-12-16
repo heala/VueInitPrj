@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const Login = () => import('../view/Login')
+const Login = () => import("../view/system/login")
 const Home = () => import("../view/Home")
 const Editor = () => import("../view/article/Editor")
 const ArticleDetail = () => import('../view/article/ArticleDetail')

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {getToken} from './auth'
+
 export function request(config) {
     const instance = axios.create({
         baseURL: "http://localhost:8080/VueAPI",
@@ -6,6 +8,7 @@ export function request(config) {
     })
 
     instance.interceptors.request.use(config=>{
+        config.headers['Authentication'] = "Bearer " + getToken();
         return config;
     }, rejectConfig => {
 
