@@ -9,7 +9,7 @@
             </div>
         </Header>
         <el-form ref="form" :model="form" class="editor">
-            <el-input v-model="form.title" id="title" :style="showStyle" placeholder="请输入标题"></el-input>
+            <el-input v-model="form.title" id="title" autofocus="true" :style="showStyle" placeholder="请输入标题"></el-input>
             <mavon-editor ref=md
                           @imgAdd="imageAdd"
                           :toolbars="toolbars"
@@ -90,8 +90,6 @@
 
             },
             imageAdd(pos, $file) {
-                console.log(pos);
-                console.log($file);
                 let formdata = new FormData();
                 formdata.append('file', $file);
                 uploadFile(formdata).then(response => {
@@ -110,7 +108,6 @@
             }
         },
         mounted() {
-            document.getElementById("title").focus();
             this.actionType = this.$route.query.actionType;
             if (this.actionType === 'reply') {
                 this.form.replyId = this.$route.query.articleId;
