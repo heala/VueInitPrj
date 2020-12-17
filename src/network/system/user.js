@@ -15,3 +15,17 @@ export function regist(data) {
         data
     });
 }
+
+export function logout() {
+    return request({
+        url: "/logout",
+        method: "post"
+    })
+}
+
+export function getUserInfo(userName) {
+    return request({
+        url: "/userInfo/" + userName,
+        method: "get"
+    })
+}

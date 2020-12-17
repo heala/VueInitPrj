@@ -12,7 +12,7 @@
                 </el-input>
             </el-form-item>
             <el-form-item :style="isRegist" prop="checkPass">
-                <el-input type="password" placeholder="再次输入密码">
+                <el-input type="password" v-model="form.checkPass" placeholder="再次输入密码">
                     <i slot="prefix" class="iconfont icon-B"/>
                 </el-input>
             </el-form-item>
@@ -85,34 +85,13 @@
             registOrLogin(){
                 this.$refs.form.validate(valid => {
                     if(this.registFlag) {   //注册
-                        regist().then(response => {
-                            if(response.code === 200) {
-                                this.$message({
-                                    type: "success",
-                                    duration: 800,
-                                    message: "注册成功"
-                                });
-                                this.toRegist();
-                            } else {
-                                this.$message({
-                                    type: "error",
-                                    duration: 800,
-                                    message: "注册失败" + response.msg
-                                })
-                            }
-                        });
-                    } else {
-                        login(this.form).then(
-                            response => {
-                                if(response.code === 200) {
-                                    this.$router.replace("/home");
-                                    setToken(response.msg);
-                                    this.$store.commit("setName", this.form.userName)
-                                } else {
-                                    this.$message.error(response.msg)
-                                }
-                            }
-                        );
+                        this.$store.dispatch("regist", this.form).then(()=>
+                            this.toRegist()
+                        )
+                    } else {                        //登录
+                        this.$store.dispatch("login", this.form).then( ()=>
+                            this.$router.push("/home")
+                        )
                     }
                 })
             }
