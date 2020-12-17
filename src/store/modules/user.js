@@ -4,32 +4,38 @@ import {Message} from 'element-ui';
 
 const user = {
     state: {
-        currentUser: {},
-        token: ''
+        avatar: '',
+        name: '',
+        token: '',
+        note: ''
     },
     mutations: {
-        setUser(state, user) {
-            state.currentUser.name = user.userName;
-            state.currentUser.note = user.note;
-            state.currentUser.avatar = user.avatar;
+        setAvatar(state, avatar) {
+            state.avatar = avatar;
+        },
+        setName(state, userName) {
+            state.UserName = userName;
+        },
+        setNote(state, note) {
+            state.note = note;
         },
         setToken(state, token) {
             state.token = token;
         }
     },
     actions: {
-        login({commit}, data) {
+        login({commit, state}, data) {
             return new Promise(((resolve, reject) => {
                 login(data).then(res => {
-                    setToken(res.msg);
-                    commit('setToken', res.msg);
                     if (res.code === 200) {
+                        setToken(res.msg)
+                        commit('setToken', res.msg);
                         Message({
                             type: "success",
                             message: "登陆成功",
                             duration: 800
-                        })
-                        resolve()
+                        });
+                        resolve();
                     } else {
                         Message({
                             type: "error",
@@ -43,8 +49,6 @@ const user = {
         regist({commit}, data) {
             return new Promise((resolve, reject) => {
                 regist(data).then(res => {
-                    setToken(res.msg);
-                    commit('setToken', res.msg)
                     if (res.code === 200) {
                         Message({
                             type: "success",
@@ -65,8 +69,12 @@ const user = {
         },
         getUserInfo({commit}, userName) {
             getUserInfo(userName).then(res => {
-                commit('setUser', res.msg);
+                console.log(res);
+                commit('setAvatar', res.msg.avatar);
+                commit('setName', res.msg.userName);
+                commit('setNote', res.msg.note);
             })
         }
     }
 }
+export default user

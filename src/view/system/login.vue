@@ -28,11 +28,11 @@
 </template>
 
 <script>
-    import {login, regist} from 'network/system/user'
-    import {setToken} from 'network/auth'
+    import {getUserInfo} from 'network/system/user'
+
     export default {
         name: "login",
-        data(){
+        data() {
             let checkPass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
@@ -61,36 +61,38 @@
                 registFlag: false,
                 formRule: {
                     userName: [
-                        { required: true, message: '请输入用户名', trigger: 'blur' }
+                        {required: true, message: '请输入用户名', trigger: 'blur'}
                     ],
                     password: [
-                        { validator: checkPass, trigger: 'blur' }
+                        {validator: checkPass, trigger: 'blur'}
                     ],
                     checkPass: [
-                        { validator: validatePass2, trigger: 'blur' }
+                        {validator: validatePass2, trigger: 'blur'}
                     ]
                 }
             }
         },
         computed: {
-            isRegist(){
-                return this.registFlag? {"display": "block"} : {"display": "none"};
+            isRegist() {
+                return this.registFlag ? {"display": "block"} : {"display": "none"};
             }
         },
         methods: {
-            toRegist(){
+            toRegist() {
                 this.$refs.form.resetFields();
-                this.registFlag = !this.registFlag ;
+                this.registFlag = !this.registFlag;
             },
-            registOrLogin(){
+            registOrLogin() {
                 this.$refs.form.validate(valid => {
-                    if(this.registFlag) {   //注册
-                        this.$store.dispatch("regist", this.form).then(()=>
+                    if (this.registFlag) {   //注册
+                        this.$store.dispatch("regist", this.form).then(() =>
                             this.toRegist()
                         )
                     } else {                        //登录
-                        this.$store.dispatch("login", this.form).then( ()=>
-                            this.$router.push("/home")
+                        this.$store.dispatch("login", this.form).then(() => {
+                                this.$router.push("/home");
+                                this.$store.dispatch("getUserInfo", this.form.userName)
+                            }
                         )
                     }
                 })
@@ -101,9 +103,11 @@
 
 <style lang="less" scoped>
     .user-container {
-        background: #EEDABB url(../../assets/img/userBg.jpg) no-repeat 0px 0px;
+        background: url(../../assets/img/userBg.jpeg) no-repeat;
+        background-size: 100% 100%;
         height: 100%;
         position: relative;
+
         .user-box {
             position: absolute;
             left: 0;
@@ -113,11 +117,13 @@
             margin: auto;
             height: 400px;
             width: 90%;
+
             .btn-login {
                 margin-top: 15px;
                 width: 100%;
             }
         }
+
         .regis-reset {
             color: #EEDABB;
             font-size: 18px;
@@ -125,6 +131,7 @@
             bottom: 20px;
             width: 100%;
             text-align: center;
+
             a {
                 padding: 20px;
             }

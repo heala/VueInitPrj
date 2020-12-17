@@ -29,3 +29,14 @@ export function getUserInfo(userName) {
         method: "get"
     })
 }
+
+export function uploadAvatar(avatar) {
+    const data = {
+        avatar: avatar
+    }
+    return request({
+        method: "post",
+        url: "/mergeUser",
+        data
+    });
+}

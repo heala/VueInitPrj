@@ -1,36 +1,29 @@
 <template>
-    <div ref="tabbar" :style="maskStyle" class="nav-tabs" @mousewheel.prevent @touchmove.prevent>
+    <div ref="tabbar" :style="maskStyle" class="nav-tabs">
         <div @click="toggleMenu" class="nav-mask"></div>
         <transition>
             <div v-if="maskOpen" class="navmenus">
                 <div class="user-icon" @click="tologin">
-                    <el-avatar icon="el-icon-user-solid" :size="60" src="~assets/img/face.jpg"/>
+                    <el-avatar icon="el-icon-user-solid" :size="70" :src="avatar"/>
                 </div>
                 <el-menu
                         background-color="#fff0cd"
                         text-color="#1a3959"
                         active-text-color="#E6A23C"
-                        default-active="1"
                         :unique-opened=true
                 >
-                    <el-submenu index="1">
-                        <template slot="title">
-                            <i class="el-icon-location"></i>
-                            <span>导航一</span>
-                        </template>
-                        <el-menu-item-group>
-                            <template slot="title">分组一</template>
-                            <el-menu-item route="/home" index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
-                        </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item @click="logout">退出</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
-                            <template slot="title">选项4</template>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
-                        </el-submenu>
-                    </el-submenu>
+                    <el-menu-item index="2" @click="logout">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">我的帖子</span>
+                    </el-menu-item>
+                    <el-menu-item index="3" @click="logout">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">我的回复</span>
+                    </el-menu-item>
+                    <el-menu-item index="1" @click="logout">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">退出</span>
+                    </el-menu-item>
                 </el-menu>
             </div>
         </transition>
@@ -39,12 +32,14 @@
 
 <script>
     import eventBus from "@/util/eventBus";
-    import {removeToken} from '@/network/auth'
+    import {getToken} from "network/auth";
+
     export default {
         name: "navbar",
         data() {
             return {
-                maskOpen: false
+                maskOpen: false,
+                avatar: this.$store.getters.avatar
             }
         },
         computed: {
@@ -57,13 +52,12 @@
                 this.maskOpen = !this.maskOpen;
             },
             logout(){
-                removeToken();
-                this.$store.commit("setName", "")
+                this.$store.dispatch("logout");
                 this.toggleMenu();
             },
             tologin(){
-                let userName = this.$store.state.name;
-                if(userName == '') {
+                let token = getToken();
+                if(!token) {
                     this.$router.push("login")
                 } else {
                     this.$router.push("userInfo")

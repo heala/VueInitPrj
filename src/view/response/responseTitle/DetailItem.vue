@@ -2,7 +2,7 @@
     <div class="reply-container">
         <div class="detail-head">
             <div class="pic">
-                <img src="~assets/img/face.jpg" alt="">
+                <img :src="article.user.avatar" alt="">
             </div>
             <div class="middle">
                 <h3>{{article.user.nickName}}</h3>

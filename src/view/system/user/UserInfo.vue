@@ -7,14 +7,14 @@
             </div>
         </Header>
         <div>
-            <div class="userinfo" @click="changename">
+            <div class="userinfo">
                 <p>用户名</p>
                 <p>{{userName}}</p>
             </div>
             <hr>
             <div class="userinfo" @click="changeAvatar">
                 <span>头像</span>
-                <el-avatar icon="el-icon-user-solid" :size="60"
+                <el-avatar icon="el-icon-user-solid" fit="fill" :size="70"
                            :src="avatar"/>
                 <input style="display: none" id="avatarUpload" type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
                        @change="imageAdd($event.target.files[0])" multiple="multiple"/>
@@ -27,13 +27,13 @@
 <script>
     import Header from "components/content/header/Header";
     import {uploadFile} from "network/Forum/forum";
-    import { MessageBox } from 'element-ui';
+    import {uploadAvatar} from "network/system/user"
     export default {
         name: "UserInfo",
         data(){
             return {
-                userName: '',
-                avatar: null
+                userName: this.$store.getters.name,
+                avatar: this.$store.getters.avatar
             }
         },
         components: {
@@ -53,17 +53,15 @@
                 console.log("准备上场")
             },
             imageAdd($file) {
-                console.log($file)
                 let formdata = new FormData();
                 formdata.append('file', $file);
                 uploadFile(formdata).then(response => {
+                    console.log(response);
                     if (response.code == 200) {
-                        this.$message({
-                            type: "success",
-                            message: "图片上传成功",
-                            duration: 800
-                        });
-                        this.avatar = response.msg;
+                        let avatar = response.msg;
+                        this.avatar = avatar;
+                        this.$store.commit("setAvatar", avatar)
+                        uploadAvatar(avatar);
                     }
                 })
             }
@@ -80,11 +78,5 @@
         margin-left: 20px;
         vertical-align: middle;
         align-items: center;
-        img {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            background-color: red;
-        }
     }
 </style>
