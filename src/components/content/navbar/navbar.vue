@@ -3,8 +3,8 @@
         <div @click="toggleMenu" class="nav-mask"></div>
         <transition>
             <div v-if="maskOpen" class="navmenus">
-                <div class="user-icon" @click="tologin">
-                    <el-avatar icon="el-icon-user-solid" :size="70" :src="avatar"/>
+                <div class="user-icon" @click="tologin" >
+                    <el-avatar class="user-icon" icon="el-icon-user-solid" fit="fill" :size="100" :src="avatar"/>
                 </div>
                 <el-menu
                         background-color="#fff0cd"
@@ -12,7 +12,7 @@
                         active-text-color="#E6A23C"
                         :unique-opened=true
                 >
-                    <el-menu-item index="2" @click="logout">
+                    <el-menu-item index="2" @click="myTopic">
                         <i class="el-icon-menu"></i>
                         <span slot="title">我的帖子</span>
                     </el-menu-item>
@@ -62,6 +62,9 @@
                 } else {
                     this.$router.push("userInfo")
                 }
+            },
+            myTopic(){
+                this.$router.push("result")
             }
         },
         mounted: function () {
@@ -83,22 +86,19 @@
 
         .user-icon {
             width: 200px;
-            height: 100px;
+            height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff0cd;
-
-            img {
-                border: solid 5px #EEDABB;
-                height: 70px;
-                width: 70px;
-                border-radius: 50%;
+            background: #ffedc3;
+            border-bottom: solid 1px #d4b780;
+            .avatar {
+                border: solid 10px #454945;
             }
         }
 
         .nav-mask {
-            background-color: rgba(0, 0, 0, .4);
+            background-color: rgba(0, 0, 0, .3);
             height: 100%;
         }
 

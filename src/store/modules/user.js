@@ -6,7 +6,6 @@ const user = {
     state: {
         avatar: '',
         name: '',
-        token: '',
         note: ''
     },
     mutations: {
@@ -14,7 +13,7 @@ const user = {
             state.avatar = avatar;
         },
         setName(state, userName) {
-            state.UserName = userName;
+            state.name = userName;
         },
         setNote(state, note) {
             state.note = note;
@@ -29,7 +28,6 @@ const user = {
                 login(data).then(res => {
                     if (res.code === 200) {
                         setToken(res.msg)
-                        commit('setToken', res.msg);
                         Message({
                             type: "success",
                             message: "登陆成功",
@@ -62,17 +60,19 @@ const user = {
         },
         logout({commit}) {
             logout().then(() => {
-                commit('setToken', '')
+                commit('setToken', '');
+                commit('setAvatar', '');
+                commit('setName', '');
+                commit('setNote', '');
                 removeToken();
             }).catch(err => {
             })
         },
-        getUserInfo({commit}, userName) {
-            getUserInfo(userName).then(res => {
-                console.log(res);
-                commit('setAvatar', res.msg.avatar);
-                commit('setName', res.msg.userName);
-                commit('setNote', res.msg.note);
+        getUserInfo({commit}, token) {
+            getUserInfo().then(res => {
+                commit('setAvatar', res.data.avatar);
+                commit('setName', res.data.userName);
+                commit('setNote', res.data.note);
             })
         }
     }

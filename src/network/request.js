@@ -1,11 +1,11 @@
 import axios from 'axios'
-import {getToken} from './auth'
+import {getToken, removeToken} from './auth'
 import {Message} from 'element-ui'
 
 export function request(config) {
     const instance = axios.create({
         baseURL: "http://localhost:8080/VueAPI",
-        timeout: 5000,
+        timeout: 3000,
     })
 
     instance.interceptors.request.use(config=>{
@@ -27,6 +27,7 @@ export function request(config) {
                 message: msg,
                 duration: 800
             })
+            removeToken();
             return;
         } else if(code === 500) {
             Message({

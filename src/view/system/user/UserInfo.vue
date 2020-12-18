@@ -20,6 +20,11 @@
                        @change="imageAdd($event.target.files[0])" multiple="multiple"/>
             </div>
             <hr>
+            <div class="userinfo">
+                <p>签名</p>
+                <p>{{note ? note : "未添加签名"}}</p>
+            </div>
+            <hr>
         </div>
     </div>
 </template>
@@ -33,7 +38,8 @@
         data(){
             return {
                 userName: this.$store.getters.name,
-                avatar: this.$store.getters.avatar
+                avatar: this.$store.getters.avatar,
+                note: this.$store.getters.note
             }
         },
         components: {
@@ -56,7 +62,6 @@
                 let formdata = new FormData();
                 formdata.append('file', $file);
                 uploadFile(formdata).then(response => {
-                    console.log(response);
                     if (response.code == 200) {
                         let avatar = response.msg;
                         this.avatar = avatar;

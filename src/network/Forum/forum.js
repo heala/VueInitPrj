@@ -28,6 +28,7 @@ export function uploadFile(formData) {
         url: "/forum/upload",
         method: "post",
         data: formData,
+        timeout: 10000,
         headers: { 'Content-Type': 'multipart/form-data'},
 
     })

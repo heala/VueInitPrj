@@ -2,11 +2,11 @@
     <div class="reply-container">
         <div class="detail-head">
             <div class="pic">
-                <img :src="article.user.avatar" alt="">
+                <el-avatar icon="el-icon-user-solid" :size="70" :src="article.user.avatar"/>
             </div>
             <div class="middle">
-                <h3>{{article.user.nickName}}</h3>
-                <p>{{article.user.note}}</p>
+                <span>{{article.user.nickName}}</span>
+                <div class="user-note">{{article.user.note}}</div>
             </div>
             <div class="stairNo">{{stairNo}}</div>
         </div>
@@ -138,22 +138,26 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                img {
-                    border: solid 5px #EEDABB;
-                    height: 70px;
-                    width: 70px;
-                    border-radius: 50%;
-                }
             }
             .stairNo{
                 text-align: center;
                 width: 80px;
+                margin-top: 10px;
             }
             .middle {
-                margin-left: 20px;
-                text-align: left;
                 flex: 1;
+                position: relative;
+                padding: 10px 0 10px 10px;
+                font-size: 19px;
+                border-right: solid 2px #fff;
+                border-left: solid 2px #fff;
+                .user-note {
+                    position: absolute;
+                    bottom: 10px;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
 
