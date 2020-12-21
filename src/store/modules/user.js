@@ -52,7 +52,7 @@ const user = {
                             type: "success",
                             message: "注册成功",
                             duration: 800
-                        })
+                        });
                         resolve();
                     }
                 })
@@ -68,7 +68,7 @@ const user = {
             }).catch(err => {
             })
         },
-        getUserInfo({commit}, token) {
+        getUserInfo({commit}) {
             getUserInfo().then(res => {
                 commit('setAvatar', res.data.avatar);
                 commit('setName', res.data.userName);

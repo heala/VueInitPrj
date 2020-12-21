@@ -20,6 +20,10 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">我的回复</span>
                     </el-menu-item>
+                    <el-menu-item index="4" @click="tologin">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">我的信息</span>
+                    </el-menu-item>
                     <el-menu-item index="1" @click="logout">
                         <i class="el-icon-menu"></i>
                         <span slot="title">退出</span>
@@ -39,7 +43,7 @@
         data() {
             return {
                 maskOpen: false,
-                avatar: this.$store.getters.avatar
+                avatar: this.$store.state.user.avatar
             }
         },
         computed: {

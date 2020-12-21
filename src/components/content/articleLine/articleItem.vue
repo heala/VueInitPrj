@@ -30,10 +30,7 @@
             }
         },
         props: {
-            article: {
-                type: Object,
-                default: null
-            }
+            article: null
         },
         methods: {
             articleDetail(){

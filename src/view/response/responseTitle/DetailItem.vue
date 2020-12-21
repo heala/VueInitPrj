@@ -2,7 +2,7 @@
     <div class="reply-container">
         <div class="detail-head">
             <div class="pic">
-                <el-avatar icon="el-icon-user-solid" :size="70" :src="article.user.avatar"/>
+                <el-avatar class="user-avatar" icon="el-icon-user-solid" :size="70" :src="article.user.avatar"/>
             </div>
             <div class="middle">
                 <span>{{article.user.nickName}}</span>
@@ -138,6 +138,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                .user-avatar {
+                    border: solid 6px #FFEC7B8D;
+                }
             }
             .stairNo{
                 text-align: center;
@@ -149,14 +152,13 @@
                 position: relative;
                 padding: 10px 0 10px 10px;
                 font-size: 19px;
-                border-right: solid 2px #fff;
-                border-left: solid 2px #fff;
                 .user-note {
                     position: absolute;
                     bottom: 10px;
                     width: 100%;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    font-size: 15px;
                 }
             }
         }

@@ -28,8 +28,6 @@
 </template>
 
 <script>
-    import {getUserInfo} from 'network/system/user'
-
     export default {
         name: "login",
         data() {
@@ -83,19 +81,25 @@
                 this.registFlag = !this.registFlag;
             },
             registOrLogin() {
-                this.$refs.form.validate(valid => {
-                    if (this.registFlag) {   //注册
-                        this.$store.dispatch("regist", this.form).then(() =>
-                            this.toRegist()
-                        )
-                    } else {                        //登录
+                if(this.registFlag) { //注册
+                    this.$refs.form.validate(valid => {
+                        if(valid) {
+                            this.$store.dispatch("regist", this.form).then(() =>
+                                this.toRegist()
+                            )
+                        }
+                    })
+                } else {                //登陆
+                    if(this.form.userName =='' || this.form.password == '') {
+                        this.$refs.form.validateField(['userName','password']);
+                    } else {
                         this.$store.dispatch("login", this.form).then(() => {
                                 this.$router.push("/home");
                                 this.$store.dispatch("getUserInfo", this.form.userName)
                             }
                         )
                     }
-                })
+                }
             }
         }
     }

@@ -12,7 +12,12 @@
                 <p>{{userName}}</p>
             </div>
             <hr>
-            <div class="userinfo" @click="changeAvatar">
+            <div class="userinfo"
+                 @click="changeAvatar"
+                 v-loading="loading"
+                 element-loading-text="拼命加载中"
+                 element-loading-spinner="el-icon-loading"
+                 element-loading-background="rgba(0, 0, 0, 0.5)">
                 <span>头像</span>
                 <el-avatar icon="el-icon-user-solid" fit="fill" :size="70"
                            :src="avatar"/>
@@ -39,7 +44,8 @@
             return {
                 userName: this.$store.getters.name,
                 avatar: this.$store.getters.avatar,
-                note: this.$store.getters.note
+                note: this.$store.getters.note,
+                loading: false
             }
         },
         components: {
@@ -59,6 +65,7 @@
                 console.log("准备上场")
             },
             imageAdd($file) {
+                this.loading = true;
                 let formdata = new FormData();
                 formdata.append('file', $file);
                 uploadFile(formdata).then(response => {
@@ -67,7 +74,13 @@
                         this.avatar = avatar;
                         this.$store.commit("setAvatar", avatar)
                         uploadAvatar(avatar);
+                    } else {
+                        this.$message.error("上传失败")
                     }
+                }).catch(err=> {
+                    this.$message.error("上传失败")
+                }).finally(()=> {
+                    this.loading = false
                 })
             }
         }

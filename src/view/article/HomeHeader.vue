@@ -38,8 +38,6 @@
     import eventBus from "@/util/eventBus";
     import Header from "components/content/header/Header";
 
-    import {articleList} from "network/Forum/forum"
-
     export default {
         name: "HomeHeader",
         components: {
@@ -70,17 +68,13 @@
                     this.$message.error("请输入条件");
                     return;
                 }
-                articleList({
-                    'searchType': this.searchType,
-                    'topic': this.topic
-                }).then(response => {
-                    this.$router.push({
-                        path: "/result",
-                        query: {
-                            articles: response.data
-                        }
-                    })
-                });
+                this.$router.push({
+                    path: "/result",
+                    query: {
+                        'searchType': this.searchType,
+                        'topic': this.topic
+                    }
+                })
             }
         },
         computed: {
