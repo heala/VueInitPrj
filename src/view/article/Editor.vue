@@ -93,6 +93,7 @@
             imageAdd(pos, $file) {
                 let formdata = new FormData();
                 formdata.append('file', $file);
+                formdata.append('type', 'pic');
                 uploadFile(formdata).then(response => {
                     if (response.code == 200) {
                         this.$message({

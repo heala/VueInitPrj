@@ -68,6 +68,7 @@
                 this.loading = true;
                 let formdata = new FormData();
                 formdata.append('file', $file);
+                formdata.append('type', 'avatar')
                 uploadFile(formdata).then(response => {
                     if (response.code == 200) {
                         let avatar = response.msg;

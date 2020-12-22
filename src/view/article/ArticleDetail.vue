@@ -72,10 +72,9 @@
 <style lang="less" scoped>
     .article-active {
         > div:first-of-type {
-            font-weight: 400;
-            font-size: 29px;
-            margin: 10px 0 10px 12px;
-            line-height: 44px;
+            font-size: 18px;
+            margin: 15px 0 5px 10px;
+            min-height: 15px;
         }
         >div:nth-child(2n) {
             background-color: #fff0cd;

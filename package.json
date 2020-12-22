@@ -14,8 +14,10 @@
     "mavon-editor": "^2.9.0",
     "style-loader": "^2.0.0",
     "style-resources-loader": "^1.4.1",
+    "timeago.js": "^4.0.2",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
+    "vue2-timeago": "^1.2.9",
     "vuex": "^3.6.0"
   },
   "devDependencies": {
