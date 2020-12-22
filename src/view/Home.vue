@@ -6,7 +6,9 @@
             <div class="title">
                 <span>Android小应用</span>
             </div>
-            <div class="article-list">
+            <div class="article-list"
+                 v-loading="loading"
+                 element-loading-text="拼命加载中">
                 <articleitem v-for="(article, articleId) in articles" :article="article" :key="articleId"></articleitem>
             </div>
             <EditTab @refresh="getArticleList"></EditTab>
@@ -31,7 +33,8 @@
         },
         data() {
             return {
-                articles: []
+                articles: [],
+                loading: true
             }
         },
         created() {
@@ -43,6 +46,7 @@
                     if(isRefresh) {
                         this.articles=[];
                     }
+                    this.loading = false
                     this.articles.push(...response.data);
                 });
             }

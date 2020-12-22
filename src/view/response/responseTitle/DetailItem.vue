@@ -11,6 +11,20 @@
             <div class="stairNo">{{stairNo}}</div>
         </div>
         <div class="content">
+            <div v-if="responseContent != null" class="response-container">
+                <section>
+                    回复 <a href="#">{{responseContent.user.nickName}}</a>
+                </section>
+                <mavon-editor
+                        :toolbarsFlag="false"
+                        :subfield="false"
+                        defaultOpen="preview"
+                        :ishljs="true"
+                        v-model="responseContent.content"
+                        toolbarsBackground="#fff6df"
+                        :boxShadow="false"
+                />
+            </div>
             <mavon-editor
                     :toolbarsFlag="false"
                     :subfield="false"
@@ -36,17 +50,16 @@
     import {opinionArticle} from 'network/Forum/forum'
     export default {
         name: "DetailItem",
-        data() {
-            return {
-                detailArticle: null,
-            }
-        },
         props: {
             content: {
                 type: String,
                 default: ''
             },
             article: {
+                type: Object,
+                default: null
+            },
+            responseContent: {
                 type: Object,
                 default: null
             }
@@ -71,12 +84,8 @@
                     query: {
                         actionType: 'reply',
                         articleId: this.article.articleId ? this.article.articleId : this.article.commentId,
-                        replyContent: this.concatReplyContent(this.article)
                     }
                 })
-            },
-            concatReplyContent(article){
-                return '@' + article.user.nickName + '\\n> ' + article.content + '\\n\\n';
             },
             showOpinion(type){
                 let userType = this.article.currUserOpinion;
@@ -182,6 +191,13 @@
                     margin: 0 12px;
                 }
             }
+        }
+        .response-container {
+            border: solid 1px #000000;
+            border-radius: 3px;
+            padding: 5px;
+            width: 90%;
+            margin: 10px auto;
         }
     }
 </style>

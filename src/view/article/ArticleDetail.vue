@@ -13,7 +13,7 @@
             <div>{{article.title}}</div>
             <!-- 主题 -->
             <DetailItem :content="content" :article="article"></DetailItem>
-            <DetailItem v-for="(reply, commentId) in replyArray" :content="reply.content" :article="reply" :key="commentId"/>
+            <DetailItem v-for="(reply, commentId) in replyArray" :content="reply.content" :responseContent="responseContent(reply.replyId)" :article="reply" :key="commentId"/>
             <EditTab actionType="reply" :articleId="article.articleId"></EditTab>
         </div>
     </div>
@@ -55,6 +55,9 @@
             },
             goBack() {
                 this.$router.go(-1)
+            },
+            responseContent(replyId) {
+                return this.replyArray.find(reply => reply.commentId == replyId)
             }
         },
         created() {

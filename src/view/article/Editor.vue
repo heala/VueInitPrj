@@ -56,7 +56,8 @@
                     quote: true, // 引用
                     alignleft: true,
                     aligncenter: true,
-                }
+                },
+                fileList: []
             }
         },
         methods: {
@@ -105,15 +106,12 @@
             },
             goBack() {
                 this.$router.go(-1)
-            }
+            },
         },
         mounted() {
             this.actionType = this.$route.query.actionType;
             if (this.actionType === 'reply') {
                 this.form.replyId = this.$route.query.articleId;
-                let replycontent = this.$route.query.replyContent;
-                console.log(replycontent);
-                if(replycontent) this.form.content = replycontent;
             }
         }
     }
@@ -132,7 +130,6 @@
         margin-top: 10px;
         position: relative;
         z-index: 8;
-        height: 93%;
     }
 
     .auto-textarea-input {
