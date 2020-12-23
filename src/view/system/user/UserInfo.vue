@@ -8,8 +8,8 @@
         </Header>
         <div>
             <div class="userinfo">
-                <p>用户名</p>
-                <p>{{userName}}</p>
+                <p>昵称</p>
+                <input type="text" class="disply-text" v-model="userName">
             </div>
             <hr>
             <div class="userinfo"
@@ -27,7 +27,7 @@
             <hr>
             <div class="userinfo">
                 <p>签名</p>
-                <p>{{note ? note : "未添加签名"}}</p>
+                <input type="text" class="disply-text" v-model="note">
             </div>
             <hr>
         </div>
@@ -44,7 +44,7 @@
             return {
                 userName: this.$store.getters.name,
                 avatar: this.$store.getters.avatar,
-                note: this.$store.getters.note,
+                note: this.$store.getters.note ? this.$store.getters.note : "未添加签名",
                 loading: false
             }
         },
@@ -97,5 +97,15 @@
         margin-left: 20px;
         vertical-align: middle;
         align-items: center;
+    }
+    .disply-text {
+        border: none;
+        background-color: #fff6df;
+        text-align: right;
+        outline: none;
+        :hover {
+            border: none;
+            background-color: red;
+        }
     }
 </style>

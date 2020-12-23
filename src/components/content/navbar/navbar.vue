@@ -4,7 +4,7 @@
         <transition>
             <div v-if="maskOpen" class="navmenus">
                 <div class="user-icon" @click="tologin" >
-                    <el-avatar class="user-icon" icon="el-icon-user-solid" fit="fill" :size="100" :src="avatar"/>
+                    <el-avatar icon="el-icon-user-solid" fit="fill" :size="100" :src="avatar"/>
                 </div>
                 <el-menu
                         background-color="#fff0cd"
