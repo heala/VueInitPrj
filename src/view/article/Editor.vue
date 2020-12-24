@@ -50,12 +50,10 @@
                 toolbars: {
                     bold: true,
                     header: true,
-                    link: true,
                     imagelink: true,
-                    code: true,
                     quote: true, // 引用
-                    alignleft: true,
-                    aligncenter: true,
+                    italic: true, // 斜体
+                    strikethrough: true, // 中划线
                 },
                 fileList: []
             }
