@@ -17,6 +17,7 @@
                         查看
                     </button>
                     回复 <a href="#" class="response-user">{{responseContent.user.nickName}}</a>
+                    <span style="margin-left: 6px">({{responseContent.createDate}})</span>
                 </section>
                 <mavon-editor
                         :toolbarsFlag="false"

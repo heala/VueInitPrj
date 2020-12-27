@@ -11,14 +11,16 @@
         <el-form ref="form" :model="form" class="editor">
             <el-input v-model="form.title" id="title" autofocus="true" :style="showStyle" placeholder="请输入标题"></el-input>
             <mavon-editor ref=md
-                          @imgAdd="imageAdd"
                           :toolbars="toolbars"
-                          :shortCut=true
                           :scrollStyle="true"
                           v-model="form.content"
                           :subfield="false"
+                          boxShadow="false"
                           toolbarsBackground="#fff6df"
                           editorBackground="#fff6df"
+                          :token="this.token"
+                          :uploadUrl="this.uploadUrl"
+                          :looksUrl="looksUrl"
             />
         </el-form>
     </div>
@@ -28,7 +30,7 @@
     import Header from "components/content/header/Header";
     import {publicArticle, uploadFile} from "network/Forum/forum"
     import {replyArticle} from "network/Forum/reply"
-
+    import {getToken} from "network/auth"
     export default {
         name: "My",
         components: {
@@ -49,15 +51,17 @@
                 actionType: '',
                 toolbars: {
                     bold: true,
+                    italic: true,
                     header: true,
+                    underline: true,
+                    strikethrough: true,
+                    quote: true,
                     link: true,
-                    imagelink: true,
-                    code: true,
-                    quote: true, // 引用
-                    alignleft: true,
-                    aligncenter: true,
+                    table: true
                 },
-                fileList: []
+                token: "Bearer " + getToken(),
+                uploadUrl: "http://81.70.199.252:8080/VueAPI/forum/upload",
+                looksUrl: "http://81.70.199.252:8080/VueAPI/reply/countenance"
             }
         },
         methods: {
@@ -89,21 +93,6 @@
                     })
                 }
 
-            },
-            imageAdd(pos, $file) {
-                let formdata = new FormData();
-                formdata.append('file', $file);
-                formdata.append('type', 'pic');
-                uploadFile(formdata).then(response => {
-                    if (response.code == 200) {
-                        this.$message({
-                            type: "success",
-                            message: "图片上传成功",
-                            duration: 800
-                        });
-                        this.$refs.md.$img2Url(pos, response.msg)
-                    }
-                })
             },
             goBack() {
                 this.$router.go(-1)

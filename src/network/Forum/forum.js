@@ -30,7 +30,6 @@ export function uploadFile(formData) {
         data: formData,
         timeout: 30000,
         headers: { 'Content-Type': 'multipart/form-data'},
-
     })
 }
 

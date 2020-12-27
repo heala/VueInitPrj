@@ -50,7 +50,6 @@
             replyList(articleId){
                 replyList(articleId).then(response=> {
                     this.replyArray.push(...response.data);
-                    console.log(this.replyArray);
                 });
             },
             goBack() {

@@ -17,7 +17,6 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false  //打包是否提示打包内容
 Vue.filter('formatTime', function(val) {
   let date = new Date(val)
-  console.log(date);
   return format(date, 'zh_CN')
 })
 new Vue({
