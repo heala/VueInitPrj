@@ -48,6 +48,12 @@
                     }
                     this.loading = false
                     this.articles.push(...response.data);
+                }).catch( err => {
+                    this.$message({
+                        type: "error",
+                        message: "加载失败",
+                        duration: 800
+                    })
                 });
             }
         },

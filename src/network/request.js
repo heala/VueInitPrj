@@ -4,8 +4,8 @@ import {Message} from 'element-ui'
 
 export function request(config) {
     const instance = axios.create({
-        baseURL: "http://81.70.199.252:8080/VueAPI",
-        //baseURL: "http://localhost:8080/VueAPI",
+        //baseURL: "http://81.70.199.252:8080/VueAPI",
+        baseURL: "http://localhost:8080/VueAPI",
         timeout: 3000,
     })
 
